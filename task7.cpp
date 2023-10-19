@@ -24,26 +24,30 @@ string checkStudentStatus(int examHour, int examMinute, int studentHour, int stu
     {
         result = "On time";
     }
-    if (TotalStudentMinutes < TotalExamMinutes)
+    else if (TotalStudentMinutes < TotalExamMinutes)
     {
-        if ((TotalExamMinutes - TotalStudentMinutes) < 60)
+        if ((TotalExamMinutes - TotalStudentMinutes) <= 30)
+        {
+            result = "On time\n" + to_string(TotalExamMinutes - TotalStudentMinutes) + " minutes before the start";
+        }
+        else if ((TotalExamMinutes - TotalStudentMinutes) < 60)
         {
             result = "Early\n" + to_string(TotalExamMinutes - TotalStudentMinutes) + " minutes before the start";
         }
-        if ((TotalExamMinutes - TotalStudentMinutes) >= 60)
+        else if ((TotalExamMinutes - TotalStudentMinutes) >= 60)
         {
             hours = (TotalExamMinutes - TotalStudentMinutes) / 60;
             minutes = (TotalExamMinutes - TotalStudentMinutes) % 60;
             result = "Early\n" + to_string(hours) + ":" + to_string(minutes) + " hours before the start";
         }
     }
-    if (TotalStudentMinutes > TotalExamMinutes)
+    else if (TotalStudentMinutes > TotalExamMinutes)
     {
         if ((TotalStudentMinutes - TotalExamMinutes) < 60)
         {
             result = "Late\n" + to_string(TotalStudentMinutes - TotalExamMinutes) + " minutes after the start";
         }
-        if ((TotalStudentMinutes - TotalExamMinutes) >= 60)
+        else if ((TotalStudentMinutes - TotalExamMinutes) >= 60)
         {
             hours = (TotalStudentMinutes - TotalExamMinutes) / 60;
             minutes = (TotalStudentMinutes - TotalExamMinutes) % 60;
